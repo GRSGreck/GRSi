@@ -1,0 +1,24 @@
+body{
+	background: linear-gradient(to bottom, #ccc 50%, #fff 50%);
+}
+.header{
+	background-color: #ff0000;
+	opacity: .5;
+	padding: 5px 20px;
+	font-family: ALSMalina, sans-serif;
+	font-size: 20px;
+}
+.content{
+	background-color: blue;
+	opacity: .5;
+	padding: 5px 20px;
+}
+.footer{
+	background-color: green;
+	opacity: .5;
+	padding: 5px 20px;
+}
+.header, .content, .footer {
+	text-align: center;
+	color: #fff;
+}

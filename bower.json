@@ -1,0 +1,19 @@
+{
+  "name": "GRSi",
+  "version": "1.0.0",
+  "authors": [
+    "GRS"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize-scss": "*",
+    "jquery": "2.*"
+  }
+}

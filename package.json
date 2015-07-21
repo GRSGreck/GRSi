@@ -1,0 +1,25 @@
+{
+  "name": "GRSi",
+  "version": "1.0.0",
+  "description": "",
+  "author": "GRS",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "*",
+    "del": "*",
+    "gulp": "*",
+    "gulp-autoprefixer": "*",
+    "gulp-csso": "*",
+    "gulp-htmlhint": "*",
+    "gulp-imagemin": "*",
+    "gulp-jshint": "*",
+    "gulp-minify-html": "*",
+    "gulp-plumber": "*",
+    "gulp-rigger": "*",
+    "gulp-sass": "*",
+    "gulp-size": "*",
+    "gulp-sourcemaps": "*",
+    "gulp-uglify": "*",
+    "imagemin-pngquant": "*"
+  }
+}
