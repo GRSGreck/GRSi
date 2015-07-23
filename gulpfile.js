@@ -9,6 +9,7 @@ var gulp = require("gulp"),
 		plumber = require("gulp-plumber"),
 		imagemin = require("gulp-imagemin"),
 		pngquant = require("imagemin-pngquant"),
+		spritesmith = require("gulp.spritesmith"),
 		uglify = require("gulp-uglify"),
 		jsHint = require("gulp-jshint"),
 		rigger = require("gulp-rigger"),
@@ -28,6 +29,7 @@ var path = {
 		css: 'dist/css/',
 		js: 'dist/js/',
 		img: 'dist/img/',
+		sprites: '../img/sprites.png',
 		fonts: 'dist/fonts'
 	},
 	tmp: {
@@ -39,13 +41,19 @@ var path = {
 		html: 'app/*.html',
 		scss: {
 			vendor: 'app/scss/vendor.scss',
-			main: 'app/scss/main.scss'
+			main: 'app/scss/main.scss',
+			sprites: 'app/scss/components/_components/'
 		},
 		js: {
 			vendor: 'app/js/vendor.js',
 			main: 'app/js/main.js'
 		},
-		img: 'app/img/**/*.*',
+		img: {
+			imgAdd: 'app/img/**/*.*',
+			sprites: 'app/img/'
+		},
+		sprites: 'app/sprites/**/*.*',
+		cssTemplate: 'app/sass.template.mustache',
 		fonts: 'app/fonts/**/*.*'
 	},
 	watch: {
@@ -59,11 +67,13 @@ var path = {
 			main: 'app/js/**/*.js'
 		},
 		img: 'app/img/**/*.*',
+		sprites: 'app/sprites/**/*.*',
 		fonts: 'app/fonts/**/*.*'
 	},
 	clean: {
 		dist: 'dist',
-		tmp: '.tmp'
+		tmp: '.tmp',
+		sprites: 'app/img/sprites.png'
 	}
 };
 
@@ -231,7 +241,7 @@ gulp.task('js:vendor', function(){
 // ----------------------------------------------------------------------------------------------
 
 gulp.task('img', function(){
-	return gulp.src(path.app.img)
+	return gulp.src(path.app.img.imgAdd)
 	.pipe(imagemin({
 		progressive: true,
 		svgoPlugins: [{removeViewBox: false}],
@@ -241,6 +251,28 @@ gulp.task('img', function(){
 	.pipe(size({title: 'IMG_size'}))
 	.pipe(gulp.dest(path.dist.img))
 	.pipe(reload({stream: true}));
+});
+
+// ----------------------------------------------------------------------------------------------
+// Task: Sprites
+// ----------------------------------------------------------------------------------------------
+
+gulp.task('sprites', function(){
+		var spriteData = gulp.src(path.app.sprites)
+		.pipe(spritesmith({
+			imgName: 'sprites.png',
+			cssName: '_spritesVariables.scss',
+			cssFormat: 'scss',
+			algorithm: 'binary-tree',
+			padding: 20,
+			imgPath: path.dist.sprites,
+			cssTemplate: path.app.cssTemplate,
+			cssVarMap: function(sprite){
+				sprite.name = 's-' + sprite.name
+			}
+		}));
+		spriteData.img.pipe(gulp.dest(path.app.img.sprites));
+		spriteData.css.pipe(gulp.dest(path.app.scss.sprites));
 });
 
 // ----------------------------------------------------------------------------------------------
@@ -260,6 +292,7 @@ gulp.task('fonts', function(){
 
 gulp.task('dist', [
 	'html',
+	'sprites',
 	'css:main',
 	'css:vendor',
 	'js:main',
@@ -279,6 +312,7 @@ gulp.task('watch', function(){
 	gulp.watch([path.watch.js.main, '!' + path.watch.js.vendor], ['js:main']);
 	gulp.watch(path.watch.js.vendor, ['js:vendor']);
 	gulp.watch(path.watch.img, ['img']);
+	gulp.watch(path.watch.sprites, ['sprites']);
 	gulp.watch(path.watch.fonts, ['fonts']);
 });
 
@@ -295,7 +329,7 @@ gulp.task('webserver', function(){
 // ----------------------------------------------------------------------------------------------
 
 gulp.task('clean', function(cb){
-	del([path.clean.dist, path.clean.tmp], cb);
+	del([path.clean.dist, path.clean.tmp, path.clean.sprites], cb);
 });
 
 // ----------------------------------------------------------------------------------------------

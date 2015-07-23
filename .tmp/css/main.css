@@ -34,6 +34,36 @@ a:visited {
 /* End hide from IE-mac */
 /* -----ClearFix - END----- */
 /* Colors */
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
 body {
   background: -webkit-linear-gradient(top, #ccc 50%, #fff 50%);
   background: linear-gradient(to bottom, #ccc 50%, #fff 50%); }
@@ -56,5 +86,150 @@ body {
   padding: 5px 20px; }
 
 .header, .content, .footer {
-  text-align: center;
   color: #fff; }
+
+.s-Ebay-32 {
+  background-image: url(../img/sprites.png);
+  background-position: -52px -256px;
+  width: 32px;
+  height: 32px; }
+
+.s-Facebook-32 {
+  background-image: url(../img/sprites.png);
+  background-position: -52px -204px;
+  width: 32px;
+  height: 32px; }
+
+.s-Google-32 {
+  background-image: url(../img/sprites.png);
+  background-position: 0px -256px;
+  width: 32px;
+  height: 32px; }
+
+.s-LinkedIn-32 {
+  background-image: url(../img/sprites.png);
+  background-position: -272px -156px;
+  width: 32px;
+  height: 32px; }
+
+.s-Pinterest-32 {
+  background-image: url(../img/sprites.png);
+  background-position: -272px -104px;
+  width: 32px;
+  height: 32px; }
+
+.s-RSS-32 {
+  background-image: url(../img/sprites.png);
+  background-position: -272px -52px;
+  width: 32px;
+  height: 32px; }
+
+.s-Twitter-Bird-32 {
+  background-image: url(../img/sprites.png);
+  background-position: 0px -204px;
+  width: 32px;
+  height: 32px; }
+
+.s-Vimeo-32 {
+  background-image: url(../img/sprites.png);
+  background-position: -208px -204px;
+  width: 32px;
+  height: 32px; }
+
+.s-WordPress-32 {
+  background-image: url(../img/sprites.png);
+  background-position: -156px -204px;
+  width: 32px;
+  height: 32px; }
+
+.s-Yahoo-01-32 {
+  background-image: url(../img/sprites.png);
+  background-position: -104px -204px;
+  width: 32px;
+  height: 32px; }
+
+.s-YouTube1-32 {
+  background-image: url(../img/sprites.png);
+  background-position: -272px 0px;
+  width: 32px;
+  height: 32px; }
+
+.s-Digg-01-48 {
+  background-image: url(../img/sprites.png);
+  background-position: 0px 0px;
+  width: 48px;
+  height: 48px; }
+
+.s-Ebay-48 {
+  background-image: url(../img/sprites.png);
+  background-position: -204px -136px;
+  width: 48px;
+  height: 48px; }
+
+.s-Facebook-48 {
+  background-image: url(../img/sprites.png);
+  background-position: -204px -68px;
+  width: 48px;
+  height: 48px; }
+
+.s-Google-48 {
+  background-image: url(../img/sprites.png);
+  background-position: -204px 0px;
+  width: 48px;
+  height: 48px; }
+
+.s-LinkedIn-48 {
+  background-image: url(../img/sprites.png);
+  background-position: -136px -136px;
+  width: 48px;
+  height: 48px; }
+
+.s-Pinterest-48 {
+  background-image: url(../img/sprites.png);
+  background-position: -68px -136px;
+  width: 48px;
+  height: 48px; }
+
+.s-RSS-48 {
+  background-image: url(../img/sprites.png);
+  background-position: 0px -136px;
+  width: 48px;
+  height: 48px; }
+
+.s-Twitter-Bird-48 {
+  background-image: url(../img/sprites.png);
+  background-position: -136px -68px;
+  width: 48px;
+  height: 48px; }
+
+.s-Vimeo-48 {
+  background-image: url(../img/sprites.png);
+  background-position: -136px 0px;
+  width: 48px;
+  height: 48px; }
+
+.s-WordPress-48 {
+  background-image: url(../img/sprites.png);
+  background-position: -68px -68px;
+  width: 48px;
+  height: 48px; }
+
+.s-Yahoo-01-48 {
+  background-image: url(../img/sprites.png);
+  background-position: 0px -68px;
+  width: 48px;
+  height: 48px; }
+
+.s-YouTube1-48 {
+  background-image: url(../img/sprites.png);
+  background-position: -68px 0px;
+  width: 48px;
+  height: 48px; }
+
+.test {
+  padding: 10px 10px;
+  list-style: none; }
+
+.sprite {
+  display: inline-block;
+  margin-right: 20px; }
