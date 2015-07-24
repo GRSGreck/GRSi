@@ -320,7 +320,7 @@ gulp.task('watch', function(){
 // Task: Web Server
 // ----------------------------------------------------------------------------------------------
 
-gulp.task('webserver', function(){
+gulp.task('webserver', ['img'], function(){
 	browserSync(config);
 });
 
