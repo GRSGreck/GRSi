@@ -15,6 +15,7 @@ var gulp = require("gulp"),
 		rigger = require("gulp-rigger"),
 		size = require("gulp-size"),
 		sourcemaps = require("gulp-sourcemaps"),
+		watch = require("gulp-watch"),
 		del = require("del"),
 		browserSync = require("browser-sync"),
 		reload = browserSync.reload;
@@ -306,14 +307,30 @@ gulp.task('dist', [
 // ----------------------------------------------------------------------------------------------
 
 gulp.task('watch', function(){
-	gulp.watch(path.watch.html, ['html']);
-	gulp.watch([path.watch.scss.main, '!' + path.watch.scss.vendor], ['css:main']);
-	gulp.watch(path.watch.scss.vendor, ['css:vendor']);
-	gulp.watch([path.watch.js.main, '!' + path.watch.js.vendor], ['js:main']);
-	gulp.watch(path.watch.js.vendor, ['js:vendor']);
-	gulp.watch(path.watch.img, ['img']);
-	gulp.watch(path.watch.sprites, ['sprites']);
-	gulp.watch(path.watch.fonts, ['fonts']);
+	watch([path.watch.html], function(event, cb){
+		gulp.start('html');
+	});
+	watch([path.watch.scss.main, '!' + path.watch.scss.vendor], function(event, cb){
+		gulp.start('css:main');
+	});
+	watch([path.watch.scss.vendor], function(event, cb){
+		gulp.start('css:vendor');
+	});
+	watch([path.watch.js.main, '!' + path.watch.js.vendor], function(event, cb){
+		gulp.start('js:main');
+	});
+	watch([path.watch.js.vendor], function(event, cb){
+		gulp.start('js:vendor');
+	});
+	watch([path.watch.img], function(event, cb){
+		gulp.start('img');
+	});
+	watch([path.watch.sprites], function(event, cb){
+		gulp.start('sprites');
+	});
+	watch([path.watch.fonts], function(event, cb){
+		gulp.start('fonts');
+	});
 });
 
 // ----------------------------------------------------------------------------------------------
