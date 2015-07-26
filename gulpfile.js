@@ -259,21 +259,21 @@ gulp.task('img', function(){
 // ----------------------------------------------------------------------------------------------
 
 gulp.task('sprites', function(){
-		var spriteData = gulp.src(path.app.sprites)
-		.pipe(spritesmith({
-			imgName: 'sprites.png',
-			cssName: '_spritesVariables.scss',
-			cssFormat: 'scss',
-			algorithm: 'binary-tree',
-			padding: 20,
-			imgPath: path.dist.sprites,
-			cssTemplate: path.app.cssTemplate,
-			cssVarMap: function(sprite){
-				sprite.name = 's-' + sprite.name
-			}
-		}));
-		spriteData.img.pipe(gulp.dest(path.app.img.sprites));
-		spriteData.css.pipe(gulp.dest(path.app.scss.sprites));
+	var spriteData = gulp.src(path.app.sprites)
+	.pipe(spritesmith({
+		imgName: 'sprites.png',
+		cssName: '_sprites.scss',
+		cssFormat: 'scss',
+		algorithm: 'binary-tree',
+		padding: 20,
+		imgPath: path.dist.sprites,
+		cssTemplate: path.app.cssTemplate,
+		cssVarMap: function(sprite){
+			sprite.name = 's-' + sprite.name
+		}
+	}));
+	spriteData.img.pipe(gulp.dest(path.app.img.sprites));
+	spriteData.css.pipe(gulp.dest(path.app.scss.sprites));
 });
 
 // ----------------------------------------------------------------------------------------------

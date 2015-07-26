@@ -88,15 +88,21 @@ body {
 .header, .content, .footer {
   color: #fff; }
 
+.s-Digg-01-32 {
+  background-image: url(../img/sprites.png);
+  background-position: -104px -256px;
+  width: 32px;
+  height: 32px; }
+
 .s-Ebay-32 {
   background-image: url(../img/sprites.png);
-  background-position: -52px -256px;
+  background-position: -52px -204px;
   width: 32px;
   height: 32px; }
 
 .s-Facebook-32 {
   background-image: url(../img/sprites.png);
-  background-position: -52px -204px;
+  background-position: -52px -256px;
   width: 32px;
   height: 32px; }
 
@@ -120,13 +126,13 @@ body {
 
 .s-RSS-32 {
   background-image: url(../img/sprites.png);
-  background-position: -272px -52px;
+  background-position: 0px -204px;
   width: 32px;
   height: 32px; }
 
 .s-Twitter-Bird-32 {
   background-image: url(../img/sprites.png);
-  background-position: 0px -204px;
+  background-position: -272px 0px;
   width: 32px;
   height: 32px; }
 
@@ -150,7 +156,7 @@ body {
 
 .s-YouTube1-32 {
   background-image: url(../img/sprites.png);
-  background-position: -272px 0px;
+  background-position: -272px -52px;
   width: 32px;
   height: 32px; }
 
