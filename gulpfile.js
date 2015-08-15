@@ -14,6 +14,8 @@ var gulp = require("gulp"),
 	jsHint = require("gulp-jshint"),
 	rigger = require("gulp-rigger"),
 	size = require("gulp-size"),
+	fontmin = require("gulp-fontmin"),
+	concat = require("gulp-concat"),
 	sourcemaps = require("gulp-sourcemaps"),
 	watch = require("gulp-watch"),
 	del = require("del"),
@@ -36,14 +38,20 @@ var path = {
 	tmp: {
 		html: '.tmp/',
 		css: '.tmp/css',
-		js: '.tmp/js'
+		js: '.tmp/js',
+		fonts: {
+			fontsAdd: '.tmp/fonts/**/*.{eot,svg,ttf,woff}',
+			fontsDest: '.tmp/fonts',
+			fontFace: '.tmp/fonts/**/*.css'
+		}
 	},
 	app: {
 		html: 'app/*.html',
 		scss: {
 			vendor: 'app/scss/vendor.scss',
 			main: 'app/scss/main.scss',
-			sprites: 'app/scss/components/_components/'
+			sprites: 'app/scss/components/_components/',
+			fonts: 'app/scss/components/_configs/'
 		},
 		js: {
 			vendor: 'app/js/vendor.js',
@@ -276,16 +284,39 @@ gulp.task('sprites', function(){
 		interlaced: true
 	}))
 	.pipe(size({title: 'Sprites_Size'}))
-	.pipe(gulp.dest(path.dist.img));
-	spriteData.css.pipe(gulp.dest(path.app.scss.sprites));
+	.pipe(gulp.dest(path.dist.img))
+	spriteData.css.pipe(gulp.dest(path.app.scss.sprites))
+	.pipe(reload({stream: true}));
+});
+
+// ----------------------------------------------------------------------------------------------
+// Task: Convert fonts
+// ----------------------------------------------------------------------------------------------
+
+gulp.task('convfonts', function(){
+	return gulp.src(path.app.fonts)
+		.pipe(fontmin({
+			fontPath: '../fonts/'
+		}))
+		.pipe(gulp.dest(path.tmp.fonts.fontsDest));
+});
+
+// ----------------------------------------------------------------------------------------------
+// Task: Concat fontsface.css
+// ----------------------------------------------------------------------------------------------
+
+gulp.task('concat', ['convfonts'], function(){
+	return gulp.src(path.tmp.fonts.fontFace)
+	.pipe(concat('_fonts.scss'))
+	.pipe(gulp.dest(path.app.scss.fonts));
 });
 
 // ----------------------------------------------------------------------------------------------
 // Task: Fonts
 // ----------------------------------------------------------------------------------------------
 
-gulp.task('fonts', function(){
-	return gulp.src(path.app.fonts)
+gulp.task('fonts', ['concat'], function(){
+	return gulp.src(path.tmp.fonts.fontsAdd)
 	.pipe(size({title: 'Fonts_size'}))
 	.pipe(gulp.dest(path.dist.fonts))
 	.pipe(reload({stream: true}));

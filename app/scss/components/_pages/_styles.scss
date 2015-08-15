@@ -5,13 +5,18 @@ body{
 	background-color: #ff0000;
 	opacity: .5;
 	padding: 5px 20px;
-	font-family: ALSMalina, sans-serif;
+	font-family: 'ALS Malina', sans-serif;
 	font-size: 20px;
 }
 .content{
 	background-color: blue;
 	opacity: .5;
 	padding: 5px 20px;
+	li {
+		font-family: 'PT Sans', sans-serif;
+		font-weight: normal;
+		font-style: italic;
+	}
 }
 .footer{
 	background-color: green;

@@ -1,6 +1,11 @@
 @font-face {
-  font-family: ALSMalina;
-  src: url("../fonts/ALSMalina.ttf"); }
+  font-family: "ALS Malina";
+  src: url("../fonts/ALSMalina.eot");
+  /* IE9 */
+  src: url("../fonts/ALSMalina.eot?#iefix") format("embedded-opentype"), url("../fonts/ALSMalina.woff") format("woff"), url("../fonts/ALSMalina.ttf") format("truetype"), url("../fonts/ALSMalina.svg#ALS Malina") format("svg");
+  /* iOS 4.1- */
+  font-style: normal;
+  font-weight: normal; }
 
 * {
   font-family: Arial, sans-serif;
@@ -72,13 +77,17 @@ body {
   background-color: #ff0000;
   opacity: .5;
   padding: 5px 20px;
-  font-family: ALSMalina, sans-serif;
+  font-family: 'ALS Malina', sans-serif;
   font-size: 20px; }
 
 .content {
   background-color: blue;
   opacity: .5;
   padding: 5px 20px; }
+  .content li {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: normal;
+    font-style: italic; }
 
 .footer {
   background-color: green;

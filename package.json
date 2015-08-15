@@ -1,5 +1,5 @@
 {
-  "name": "GRSi",
+  "name": "GRSbp",
   "version": "1.0.0",
   "description": "",
   "author": "GRS",
@@ -9,7 +9,9 @@
     "del": "*",
     "gulp": "*",
     "gulp-autoprefixer": "*",
+    "gulp-concat": "*",
     "gulp-csso": "*",
+    "gulp-fontmin": "*",
     "gulp-htmlhint": "*",
     "gulp-imagemin": "*",
     "gulp-jshint": "*",
