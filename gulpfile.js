@@ -284,7 +284,7 @@ gulp.task('sprites', function(){
 		interlaced: true
 	}))
 	.pipe(size({title: 'Sprites_Size'}))
-	.pipe(gulp.dest(path.dist.img))
+	.pipe(gulp.dest(path.dist.img));
 	spriteData.css.pipe(gulp.dest(path.app.scss.sprites))
 	.pipe(reload({stream: true}));
 });
