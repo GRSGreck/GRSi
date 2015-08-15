@@ -49,10 +49,7 @@ var path = {
 			vendor: 'app/js/vendor.js',
 			main: 'app/js/main.js'
 		},
-		img: {
-			imgAdd: 'app/img/**/*.*',
-			sprites: 'app/img/'
-		},
+		img: 'app/img/**/*.*',
 		sprites: 'app/sprites/**/*.*',
 		cssTemplate: 'app/sass.template.mustache',
 		fonts: 'app/fonts/**/*.*'
@@ -73,8 +70,7 @@ var path = {
 	},
 	clean: {
 		dist: 'dist',
-		tmp: '.tmp',
-		sprites: 'app/img/sprites.png'
+		tmp: '.tmp'
 	}
 };
 
@@ -135,7 +131,7 @@ gulp.task('html', function(){
 		"attr-value-not-empty": true,
 		"attr-no-duplication": true,
 		"tag-pair": true,
-		"tag-self-close": true,
+		"tag-self-close": false,
 		"spec-char-escape": true,
 		"id-unique": true,
 		"src-not-empty": true,
@@ -242,7 +238,7 @@ gulp.task('js:vendor', function(){
 // ----------------------------------------------------------------------------------------------
 
 gulp.task('img', function(){
-	return gulp.src(path.app.img.imgAdd)
+	return gulp.src(path.app.img)
 	.pipe(imagemin({
 		progressive: true,
 		svgoPlugins: [{removeViewBox: false}],
@@ -272,7 +268,15 @@ gulp.task('sprites', function(){
 			sprite.name = 's-' + sprite.name
 		}
 	}));
-	spriteData.img.pipe(gulp.dest(path.app.img.sprites));
+	spriteData.img
+	.pipe(imagemin({
+		progressive: true,
+		svgoPlugins: [{removeViewBox: false}],
+		use: [pngquant()],
+		interlaced: true
+	}))
+	.pipe(size({title: 'Sprites_Size'}))
+	.pipe(gulp.dest(path.dist.img));
 	spriteData.css.pipe(gulp.dest(path.app.scss.sprites));
 });
 
@@ -337,7 +341,7 @@ gulp.task('watch', function(){
 // Task: Web Server
 // ----------------------------------------------------------------------------------------------
 
-gulp.task('webserver', ['img'], function(){
+gulp.task('webserver', ['sprites','img'], function(){
 	browserSync(config);
 });
 
@@ -346,7 +350,7 @@ gulp.task('webserver', ['img'], function(){
 // ----------------------------------------------------------------------------------------------
 
 gulp.task('clean', function(cb){
-	del([path.clean.dist, path.clean.tmp, path.clean.sprites], cb);
+	del([path.clean.dist, path.clean.tmp], cb);
 });
 
 // ----------------------------------------------------------------------------------------------
