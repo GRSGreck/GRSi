@@ -125,7 +125,7 @@ gulp.task('html', function(){
 		"attr-value-not-empty": true,
 		"attr-no-duplication": true,
 		"tag-pair": true,
-		"tag-self-close": true,
+		"tag-self-close": false,
 		"spec-char-escape": true,
 		"id-unique": true,
 		"src-not-empty": true,
@@ -301,7 +301,7 @@ gulp.task('watch', function(){
 // Task: Web Server
 // ----------------------------------------------------------------------------------------------
 
-gulp.task('webserver', function(){
+gulp.task('webserver', ['img'], function(){
 	browserSync(config);
 });
 
