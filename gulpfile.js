@@ -350,8 +350,8 @@ gulp.task('webserver', ['sprites','img'], function(){
 // Task: Clean
 // ----------------------------------------------------------------------------------------------
 
-gulp.task('clean', function(cb){
-	del([path.clean.dist, path.clean.tmp], cb);
+gulp.task('clean', function(){
+	del.sync([path.clean.dist, path.clean.tmp]);
 });
 
 // ----------------------------------------------------------------------------------------------
